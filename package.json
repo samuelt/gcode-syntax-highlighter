@@ -1,0 +1,27 @@
+{
+  "name": "gcode-syntax-highlighter",
+  "title": "G-Code Syntax Highlighter",
+  "description": "Brackets highlighter extension for CNC G-Code.",
+  "homepage": "https://github.com/appliedengdesign/gcode-syntax-highlighter",
+  "keywords": [
+    "gcode",
+    "mcode",
+    "CNC",
+    "syntax",
+    "highlighting"
+  ],
+  "version": "0.1",
+  "author": {
+    "name": "Mike Centola",
+    "email": "github@mikecentola.com",
+    "url": "https://github.com/mikecentola"
+  },
+  "licenses": [{
+    "type": "Apache 2.0",
+    "url": "http://www.apache.org/licenses/"
+  }],
+  "engines": {
+    "brackets": ">=1.0.0"
+  }
+}
+
