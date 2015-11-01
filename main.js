@@ -18,24 +18,18 @@ define(function (require, exports, module) {
         ExtensionUtils.loadStyleSheet(module, "styles/styles.css");
     
         return {
-        
-            startState: function () {
-                return {
-                    inComment: false
-                };
-            },
             token: function (stream, state) {
                 // Check for State Changes
                 
             
                 // Block Delete
-                if (stream.match(/([\/].*)/,false)) {
+                if (stream.match(/([\/].*)/, false)) {
                     stream.skipToEnd();
                     return 'block_delete';
                 }
             
                 // Program Start
-                if (stream.match(/([\%])/,false)) {
+                if (stream.match(/([\%])/, false)) {
                     stream.skipToEnd();
                     return 'program_start';
                 }
@@ -80,9 +74,14 @@ define(function (require, exports, module) {
                     return 'tools';
                 }
             
-                return null;
-            }
-        };   
+                //return null;
+            },
+            startState: function () {
+                return {
+                    inComment: false
+                };
+            },
+        };
     });
 
     
@@ -92,12 +91,12 @@ define(function (require, exports, module) {
     LanguageManager.defineLanguage("gcode", {
         name: "gcode",
         mode: "gcode",
-        fileExtensions: ["nc","tap","mpf","eia"],
-        blockComment: ["(",")"],
+        fileExtensions: ["nc", "tap", "mpf", "eia"],
+        blockComment: ["(", ")"],
         lineComment: [";"]
     });
             
-    console.log("Nginx syntax highlighting extension loaded");
+    console.log("g-code syntax highlighting extension loaded");
     
 });
             
