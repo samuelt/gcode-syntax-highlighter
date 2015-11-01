@@ -1,20 +1,20 @@
 /* gcode-syntax-highlighter css */
 
-.cm-block_delete { color: red; }
+.cm-block_delete { color: grey; }
 
-.cm-program_start { }
+.cm-program_start { color: yellow; }
 
-.cm-program_number { }
+.cm-program_number { color: black; }
 
-.cm-block_number { }
+.cm-block_number { color: limegreen; }
 
-.cm-g_code { }
+.cm-g_code { color: blue; }
 
-.cm-m_code { }
+.cm-m_code { color: orange}
 
-.cm-speeds { }
+.cm-speeds { color:red; }
 
-.cm-feeds { }
+.cm-feeds { color: purple; }
 
-.cm-tools { }
+.cm-tools { color: red; }
 
