@@ -11,7 +11,7 @@
     "highlighting"
   ],
   "version": "0.1.0",
-  "author" "Mike Centola <github@mikecentola.com> (https://github.com/mikecentola)",
+  "author": "Mike Centola <github@mikecentola.com> (https://github.com/mikecentola)",
   "licenses": [{
     "type": "Apache 2.0",
     "url": "http://www.apache.org/licenses/"
