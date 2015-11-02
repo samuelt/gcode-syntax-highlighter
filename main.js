@@ -1,6 +1,8 @@
-/*global define, $, brackets */
+/*jslint regexp: true, vars: true*/
+/*global define, $, brackets, console */
 
-/* {gcode-syntax-highlighter} Simple Mode for G-Code Syntax Highlighting */
+/* {gcode-syntax-highlighter} Simple Mode for G-Code Syntax Highlighting
+        v0.1.0 Written by Mike Centola (Applied Engineering & Design)      */
 
 
 define(function (require, exports, module) {
@@ -10,13 +12,12 @@ define(function (require, exports, module) {
     var LanguageManager = brackets.getModule("language/LanguageManager");
     var CodeMirror = brackets.getModule("thirdparty/CodeMirror2/lib/codemirror");
     
-    
     CodeMirror.defineMode("gcode", function () {
         
         // Load Modules
         var ExtensionUtils = brackets.getModule("utils/ExtensionUtils");
         ExtensionUtils.loadStyleSheet(module, "styles/styles.css");
-    
+        
         return {
             token: function (stream, state) {
                 // Check for State Changes
@@ -29,13 +30,14 @@ define(function (require, exports, module) {
                 }
             
                 // Program Start
-                if (stream.match(/([\%])/, false)) {
+                if (stream.match(/([\%])/)) {
                     stream.skipToEnd();
                     return 'program_start';
                 }
                 
                 // Program Number
                 if (stream.match(/([o][0-9]{1,4})/i)) {
+                    stream.skipToEnd();
                     return 'program_number';
                 }
                 
@@ -46,6 +48,7 @@ define(function (require, exports, module) {
             
                 // Comments
                 if (stream.match(/(\(.+\))/)) {
+                    stream.skipToEnd();
                     return 'comment';
                 }
             
@@ -56,6 +59,7 @@ define(function (require, exports, module) {
                 
                 // M-Codes
                 if (stream.match(/([m][0-9]{1,3})/i)) {
+                    stream.skipToEnd();
                     return 'm_code';
                 }
                 
@@ -65,7 +69,7 @@ define(function (require, exports, module) {
                 }
                 
                 // Feeds
-                if (stream.match(/([f][0-9]+\.[0-9]*)/i)) {
+                if (stream.match(/([f][0-9]+\.?[0-9]*)/i)) {
                     return 'feeds';
                 }
                 
@@ -73,29 +77,60 @@ define(function (require, exports, module) {
                 if (stream.match(/([dth][0-9]+)/i)) {
                     return 'tools';
                 }
-            
-                //return null;
+                
+                // X, Y Coordinates
+                if (stream.match(/([xy]-?[0-9]+\.?[0-9]*)/i)) {
+                    return 'xycoords';
+                }
+                
+                // Z Coordindates
+                if (stream.match(/([z]-?[0-9]+\.?[0-9]*)/i)) {
+                    return 'zcoords';
+                }
+                
+                // A, B, C Rotations
+                if (stream.match(/([abc]-?[0-9]+\.?[0-9]*)/i)) {
+                    return 'axisrot';
+                }
+                
+                // I, J, K
+                if (stream.match(/([ijk]-?[0-9]+\.?[0-9]*)/i)) {
+                    return 'ijknums';
+                }
+                
+                // P, Q, R
+                if (stream.match(/([pqr]-?[0-9]+\.?[0-9]*)/i)) {
+                    return 'pqrnums';
+                }
+                
+                // Strip Space
+                if (stream.eatSpace()) {
+                    return null;
+                }
+                
+                // Eat the rest!
+                stream.eat(/./);
+                return null;
             },
             startState: function () {
                 return {
                     inComment: false
                 };
-            },
+            }
         };
     });
 
     
-    CodeMirror.defineMIME('text/x-gcode', 'gcode');
+    CodeMirror.defineMIME("text/x-gcode", "gcode");
     
     // Register with Brackets
     LanguageManager.defineLanguage("gcode", {
         name: "gcode",
         mode: "gcode",
-        fileExtensions: ["nc", "tap", "mpf", "eia"],
+        fileExtensions: ["nc", "tap", "mpf", "eia", "hnc", "min", "hd3", "ncc"],
         blockComment: ["(", ")"],
         lineComment: [";"]
     });
-            
     console.log("g-code syntax highlighting extension loaded");
     
 });

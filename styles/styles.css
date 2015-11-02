@@ -2,19 +2,29 @@
 
 .cm-block_delete { color: grey; }
 
-.cm-program_start { color: yellow; }
+.cm-program_start { color: lime; }
 
-.cm-program_number { color: black; }
+.cm-program_number { color: black; font-weight: bold; }
 
 .cm-block_number { color: limegreen; }
 
-.cm-g_code { color: blue; }
+.cm-g_code { color: blue; font-weight: bold; }
 
-.cm-m_code { color: orange}
+.cm-m_code { color: orange; font-weight: bold; }
 
-.cm-speeds { color:red; }
+.cm-speeds { color: black; font-weight: bold; }
 
-.cm-feeds { color: purple; }
+.cm-feeds { color: darkgreen; }
 
-.cm-tools { color: red; }
+.cm-tools { color: deepskyblue; }
+
+.cm-xycoords { color: black; }
+
+.cm-zcoords { color: red; }
+
+.cm-axisrot { color: darksalmon; }
+
+.cm-ijknums { color: cadetblue; }
+
+.cm-pqrnums { color: blueviolet; }
 
