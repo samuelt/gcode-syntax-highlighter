@@ -127,7 +127,7 @@ define(function (require, exports, module) {
     LanguageManager.defineLanguage("gcode", {
         name: "gcode",
         mode: "gcode",
-        fileExtensions: ["nc", "tap", "mpf", "eia", "hnc", "min", "hd3", "ncc"],
+        fileExtensions: ["nc", "tap", "mpf", "eia", "hnc", "min", "hd3", "ncc", "ngc"],
         blockComment: ["(", ")"],
         lineComment: [";"]
     });
